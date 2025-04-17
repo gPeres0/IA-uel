@@ -1,13 +1,11 @@
-import csv
 import pandas as pd
 
 def main():
-    with open('worldcities.csv') as csvfile:
-        worldcities = csv.reader(csvfile, delimiter=',')
+    worldcities = pd.read_csv("./worldcities.csv")
+    df = pd.DataFrame(data=worldcities, columns=["city","city_ascii","lat","lng","country","iso2","iso3","admin_name","capital","population","id"])
+    mask_pr = df.admin_name == 'Paraná'    
+    print(df[mask_pr])
     
-    df = pd.DataFrame(data=worldcities, index=["city","city_ascii","lat","lng","country","iso2","iso3","capital","admin_name","population","id"])
-    for cidades in df:
-        if cidades["capital"] == "Paraná":
-            print(cidades)
+
 
 main()
