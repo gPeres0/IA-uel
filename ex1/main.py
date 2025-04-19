@@ -37,13 +37,6 @@ for i, cidade in pr_cities.iterrows():
     # Adiciona as conexões ao dicionário
     conexoes[nome_cidade] = vizinhas
 
+# Cria arquivo conexoes.json a partir do dicionário de conexões
 with open('conexoes.json', 'w', encoding='utf-8') as arquivo_json:
     json.dump(conexoes, arquivo_json, indent=4)    
-
-
-
-#################### TO DO ####################
-#   [x] Filtrar DataFrame
-#   [x] Selecionar n aleatoriamente (2 a 6)
-#   [ ] Calcular n cidades mais próximas
-#   [ ] Fazer estrutura de conexões
