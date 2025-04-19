@@ -1,28 +1,49 @@
 import random
 import pandas as pd # type: ignore
-from haversine import haversine # type: ignore
+from haversine import Unit, haversine # type: ignore
+import json
 
 
-worldcities = pd.read_csv("./worldcities.csv")
-df = pd.DataFrame(data=worldcities, columns=["city","city_ascii","lat","lng","country","iso2","iso3","admin_name","capital","population","id"])
-mask_pr = df.admin_name == 'Paraná' # Cria uma máscara (boolean) dos valores q se aplicam à condição 
+# Lê e pré-processa o arquivo worldcities.csv, criando uma estrutura com apenas cidades do Paraná
+df = pd.read_csv("./worldcities.csv")
+pr_cities = df[df.admin_name == 'Paraná'].reset_index(drop=True)
 
-def main():
-    pr_cities = df[mask_pr] # Usa a máscara para exibir os valores correspondentes
-    pr_cities.index = pd.RangeIndex(start=0, stop=190, step=1) # Redefine o índice das cidades por questões de praticidade
-    print(pr_cities)
+# Prepara o dicionário de conexões
+conexoes = {}
 
-    n = int(random.uniform(2, 6.9))
-#    print(n)
+# Itera por todas as cidades do DataFrame filtrado
+for i, cidade in pr_cities.iterrows():    
+    nome_cidade = cidade['city']
+    coord_cidade = (cidade['lat'], cidade['lng'])
 
-    # Cria tuple com as coordenadas de teste (curitiba e londrina)
-    curitiba = (pr_cities.at[453, "lat"], pr_cities.at[453, "lng"])
-    londrina = (pr_cities.at[1328, "lat"], pr_cities.at[1328, "lng"])
-
-    # Imprime o resultado do cálculo de Haversine entre os tuples de teste criados
-#    print(haversine(curitiba, londrina))
-
+    # Determina aleatoriamente o número de cidades vizinhas (entre 2 e 6)
+    n_vizinhas = random.randint(2, 6)
     
+    # Calcula a distância para todas as outras cidades
+    distancias = []
+    for j, outra_cidade in pr_cities.iterrows():
+        if cidade['city'] == outra_cidade['city']:
+            continue  # Pular a mesma cidade
+
+        coord_outra_cidade = (outra_cidade['lat'], outra_cidade['lng'])
+        # Realiza o cálculo de Haversine para determinar as cidades mais próximas
+        distancia = haversine(coord_cidade, coord_outra_cidade, unit=Unit.KILOMETERS)
+        distancias.append((outra_cidade['city'], distancia))
+    
+    # Ordena as cidades pela distância e seleciona as n mais próximas
+    distancias.sort(key=lambda x: x[1])
+    vizinhas = distancias[:n_vizinhas]
+    
+    # Adiciona as conexões ao dicionário
+    conexoes[nome_cidade] = vizinhas
+
+with open('conexoes.json', 'w', encoding='utf-8') as arquivo_json:
+    json.dump(conexoes, arquivo_json, indent=4)    
 
 
-main()
+
+#################### TO DO ####################
+#   [x] Filtrar DataFrame
+#   [x] Selecionar n aleatoriamente (2 a 6)
+#   [ ] Calcular n cidades mais próximas
+#   [ ] Fazer estrutura de conexões
