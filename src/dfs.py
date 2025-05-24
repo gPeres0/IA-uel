@@ -29,9 +29,3 @@ def dfs(origem, destino):
                 pilha.append(nome)
 
     return "Nenhum caminho encontrado"
-
-if __name__ == "__main__":
-    origem = input("Cidade de origem: ").strip()
-    destino = input("Cidade de destino: ").strip()
-    resultado = dfs(origem, destino)
-    print(resultado)
