@@ -28,19 +28,19 @@ if __name__ == '__main__':
 
         Começo do teste: {bfs_start}
         Fim do teste: {bfs_end}
-        Tempo total de execução: {bfs_end - bfs_start} ns
+        Tempo total de execução: {(bfs_end - bfs_start)/1000000} ms
         =================== DFS =====================
         {dfs_result}
         
         Começo do teste: {dfs_start}
         Fim do teste: {dfs_end}
-        Tempo total de execução: {dfs_end - dfs_start} ns
+        Tempo total de execução: {(dfs_end - dfs_start)/1000000} ms
         =================== UCS =====================
         {ucs_result}
         
         Começo do teste: {ucs_start}
         Fim do teste: {ucs_end}
-        Tempo total de execução: {ucs_end - ucs_start} ns
+        Tempo total de execução: {(ucs_end - ucs_start)/1000000} ms
         =============================================""")
         
         i += 1
