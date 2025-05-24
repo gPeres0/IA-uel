@@ -1,5 +1,5 @@
 import dfs
-from time import perf_counter
+import time
 
 if __name__ == '__main__':
     origins = ["Londrina", "Primeiro de Maio", "Londrina", "Londrina", "Primeiro de Maio"]
@@ -7,17 +7,17 @@ if __name__ == '__main__':
 
     i = 1
     while i <= 5:
-        bfs_start = perf_counter()
+        bfs_start = time.perf_counter_ns()
         bfs_result = None
-        bfs_end = perf_counter()
+        bfs_end = time.perf_counter_ns()
 
-        dfs_start = perf_counter()
+        dfs_start = time.perf_counter_ns()
         dfs_result = dfs.dfs(origins[i-1], destinies[i-1])
-        dfs_end = perf_counter()
+        dfs_end = time.perf_counter_ns()
 
-        ucs_start = perf_counter()
+        ucs_start = time.perf_counter_ns()
         ucs_result = None
-        ucs_end = perf_counter()
+        ucs_end = time.perf_counter_ns()
 
         print(f"""
                             -
