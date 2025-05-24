@@ -2,7 +2,7 @@
 ###### Prof. Bruno Squizato Faiçal.
 
 ### Grupo: 
-Gabriel Peres de Souza, João Carlos dos Santos Correa e Rodrigo Macedo da Silva Jr.
+Gabriel Peres de Souza, João Carlos dos Santos Correa e Rodrigo Macedo Silva Jr.
 ### Descrição:
 - Gere um grafo que simbolize um mapa usando como base a atividade realizado na disciplina no formato JSON. O grafo deve ser ponderado nas arestas (quando o método não usar esta informação, o valide deve ser ignorado)
 - Implementar os três métodos de busca cega vistos em aula
