@@ -20,7 +20,6 @@ if __name__ == '__main__':
         ucs_result = None
         ucs_end = time.perf_counter_ns()
 
-        bfs.salvar_caminho_em_arquivo(origins[i-1], destinies[i-1], dfs_result)
         print(f"""
                             -
         ================ TESTE {i} ===================
