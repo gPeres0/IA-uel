@@ -1,5 +1,6 @@
 import dfs
 import time
+import bfs
 
 if __name__ == '__main__':
     origins = ["Londrina", "Primeiro de Maio", "Londrina", "Londrina", "Primeiro de Maio"]
@@ -8,7 +9,7 @@ if __name__ == '__main__':
     i = 1
     while i <= 5:
         bfs_start = time.perf_counter_ns()
-        bfs_result = None
+        bfs_result = bfs.bfs(origins[i-1], destinies[i-1])
         bfs_end = time.perf_counter_ns()
 
         dfs_start = time.perf_counter_ns()
@@ -19,6 +20,7 @@ if __name__ == '__main__':
         ucs_result = None
         ucs_end = time.perf_counter_ns()
 
+        bfs.salvar_caminho_em_arquivo(origins[i-1], destinies[i-1], dfs_result)
         print(f"""
                             -
         ================ TESTE {i} ===================
