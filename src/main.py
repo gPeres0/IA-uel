@@ -1,6 +1,7 @@
-import dfs
-import time
 import bfs
+import dfs
+import ucs
+import time
 
 if __name__ == '__main__':
     origins = ["Londrina", "Primeiro de Maio", "Londrina", "Londrina", "Primeiro de Maio"]
@@ -17,7 +18,7 @@ if __name__ == '__main__':
         dfs_end = time.perf_counter_ns()
 
         ucs_start = time.perf_counter_ns()
-        ucs_result = None
+        ucs_result, total_cost = ucs.busca_custo_uniforme(origins[i-1], destinies[i-1])
         ucs_end = time.perf_counter_ns()
 
         print(f"""
@@ -37,6 +38,7 @@ if __name__ == '__main__':
         Fim do teste: {dfs_end}
         Tempo total de execução: {(dfs_end - dfs_start)/1000000} ms
         =================== UCS =====================
+        Custo total: {total_cost}
         {ucs_result}
         
         Começo do teste: {ucs_start}
