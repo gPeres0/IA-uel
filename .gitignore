@@ -1,2 +1,8 @@
 .idea
 .vscode
+.T2/bin
+.T2/include
+.T2/lib
+.T2/lib64
+.T2/share
+.T2/pyvenv.cfg
