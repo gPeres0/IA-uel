@@ -6,3 +6,6 @@ def main():
     G = cbc.criar_base_conhecimento()
     dg.desenhar_grafo(G)
     mi.motor_inferencia(G)
+
+if __name__ == "__main__":
+    main()
